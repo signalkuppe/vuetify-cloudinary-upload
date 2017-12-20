@@ -59,8 +59,7 @@ export default {
   props: {
     // v-model
     value: {
-      type: String,
-      required
+      type: String
     },
     // Cloudinary upload preset
     uploadPreset: {
@@ -75,7 +74,7 @@ export default {
     // Image transformations
     transformation: {
       type: String,
-      default: 'w_120,h_120,c_fill,g_auto,q_auto'
+      default: 'w_120,h_120,c_fill,g_auto,q_auto,f_auto'
     },
     // Upload button color (default = gray)
     buttonColor: {
@@ -155,44 +154,46 @@ export default {
     },
     // Upload the image
     uploadFiles (e) {
-      this.uploading = true
       let files = e.target.files || e.dataTransfer.files
-      for (let i = 0; i < files.length; i++) {
-        // Prepare the FormData to send to cloudinary
-        const file = files.item(i)
-        let formdata = new FormData()
-        formdata.append('file', file)
-        formdata.append('upload_preset', this.uploadPreset)
-        let xhr = new XMLHttpRequest()
-        // Progress
-        xhr.upload.addEventListener('progress', (e) => {
-          let total = e.total
-          let loaded = e.loaded
-          this.progress = parseInt((100 / total) * loaded)
-        }, false)
-        // Upload has finished
-        xhr.addEventListener('load', (e) => {
-          let response = e.target
-          this.uploading = false
-          this.progress = 0
-          // reset formdata
-          formdata = null
-          if (response.status !== 200) { // success
-            console.log('Image upload error', response.responseText)
-            this.$emit('error', response.responseText)
-          } else { // failure
-            let uploaded = JSON.parse(response.responseText)
-            this.imgPublicId = uploaded.public_id
-            this.$emit('input', uploaded.public_id)
-          }
-        }, false)
-        // Upload error
-        xhr.addEventListener('error', (e) => {
-          console.log('Image upload error', e)
-          this.$emit('error', e)
-        }, false)
-        xhr.open('POST', this.apiEndpoint)
-        xhr.send(formdata)
+      if (files.length) {
+        this.uploading = true
+        for (let i = 0; i < files.length; i++) {
+          // Prepare the FormData to send to cloudinary
+          const file = files.item(i)
+          let formdata = new FormData()
+          formdata.append('file', file)
+          formdata.append('upload_preset', this.uploadPreset)
+          let xhr = new XMLHttpRequest()
+          // Progress
+          xhr.upload.addEventListener('progress', (e) => {
+            let total = e.total
+            let loaded = e.loaded
+            this.progress = parseInt((100 / total) * loaded)
+          }, false)
+          // Upload has finished
+          xhr.addEventListener('load', (e) => {
+            let response = e.target
+            this.uploading = false
+            this.progress = 0
+            // reset formdata
+            formdata = null
+            if (response.status !== 200) { // success
+              console.log('Image upload error', response.responseText)
+              this.$emit('error', response.responseText)
+            } else { // failure
+              let uploaded = JSON.parse(response.responseText)
+              this.imgPublicId = uploaded.public_id
+              this.$emit('input', uploaded.public_id)
+            }
+          }, false)
+          // Upload error
+          xhr.addEventListener('error', (e) => {
+            console.log('Image upload error', e)
+            this.$emit('error', e)
+          }, false)
+          xhr.open('POST', this.apiEndpoint)
+          xhr.send(formdata)
+        }
       }
     },
     deleteImage () {

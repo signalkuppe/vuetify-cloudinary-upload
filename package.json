@@ -1,6 +1,6 @@
 {
   "name": "vuetify-cloudinary-upload",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A simple image upload widget for cloudinary and vuetify",
   "main": "src/main.js",
   "scripts": {

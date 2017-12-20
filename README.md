@@ -7,7 +7,7 @@ A simple upload widget with progress indicator made for [Vuetify](https://vuetif
 ## Install
 
 ```bash
-npm install v-cloudinary-upload
+npm install vuetify-cloudinary-upload
 ```
 
 ## Usage
@@ -16,9 +16,9 @@ Import the component
 
 ```js
   <script>
-    import vCloudinaryUpload from 'v-cloudinary-upload'
+    import vuetifyCloudinaryUpload from 'vuetify-cloudinary-upload'
     export default {
-      components: { vCloudinaryUpload }
+      components: { vuetifyCloudinaryUpload }
     }
   </script>
 ```
