@@ -2,7 +2,7 @@
 
 A simple upload widget with progress indicator made for [Vuetify](https://vuetifyjs.com/) and [Cloudinary](https://cloudinary.com)
 
-[Demo](https://i.imgur.com/3iTZ2in.gif)
+[Demo](https://i.imgur.com/3iTZ2in.gifv)
 
 ## Install
 
