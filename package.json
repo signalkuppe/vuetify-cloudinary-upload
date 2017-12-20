@@ -1,0 +1,38 @@
+{
+  "name": "vuetify-cloudinary-upload",
+  "version": "0.0.1",
+  "description": "A simple image upload widget for cloudinary and vuetify",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack -p"
+  },
+  "author": {
+    "name": "Matteo Leoni",
+    "email": "leoni.matteo@gmail.com"
+  },
+  "keywords": [
+    "vue",
+    "vuejs",
+    "plugin",
+    "vuetify",
+    "cloudinary",
+    "upload"
+  ],
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "cross-env": "^5.1.1",
+    "css-loader": "^0.28.7",
+    "file-loader": "^1.1.5",
+    "vue-loader": "^13.5.0",
+    "vue-template-compiler": "^2.5.9",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.9.7"
+  },
+  "dependencies": {
+    "vue": "^2.5.9"
+  }
+}
